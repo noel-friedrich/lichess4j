@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class Storm {
 
-    public int runs;
-    public int score;
+    private int runs;
+    private int score;
 }

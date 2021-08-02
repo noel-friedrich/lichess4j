@@ -6,17 +6,17 @@ import lombok.Getter;
 @Getter
 public class Perfs {
 
-    public Blitz blitz;
-    public Horde horde;
-    public Rapid rapid;
-    public Storm storm;
-    public Atomic atomic;
-    public Bullet bullet;
-    public Puzzle puzzle;
-    public Chess960 chess960;
-    public Classical classical;
-    public RacingKings racingKings;
-    public UltraBullet ultraBullet;
-    public KingOfTheHill kingOfTheHill;
-    public Correspondence correspondence;
+    private Blitz blitz;
+    private Horde horde;
+    private Rapid rapid;
+    private Storm storm;
+    private Atomic atomic;
+    private Bullet bullet;
+    private Puzzle puzzle;
+    private Chess960 chess960;
+    private Classical classical;
+    private RacingKings racingKings;
+    private UltraBullet ultraBullet;
+    private KingOfTheHill kingOfTheHill;
+    private Correspondence correspondence;
 }

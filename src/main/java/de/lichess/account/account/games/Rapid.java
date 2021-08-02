@@ -4,9 +4,10 @@ import lombok.Getter;
 
 @Getter
 public class Rapid {
-    public int games;
-    public int rating;
-    public int rd;
-    public int prog;
-    public boolean prov;
+
+    private int games;
+    private int rating;
+    private int rd;
+    private int prog;
+    private boolean prov;
 }

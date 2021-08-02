@@ -6,18 +6,18 @@ import lombok.Getter;
 @Getter
 public class Count {
 
-    public int ai;
-    public int me;
-    public int all;
-    public int win;
-    public int winH;
-    public int draw;
-    public int loss;
-    public int rated;
-    public int lossH;
-    public int drawH;
+    private int ai;
+    private int me;
+    private int all;
+    private int win;
+    private int winH;
+    private int draw;
+    private int loss;
+    private int rated;
+    private int lossH;
+    private int drawH;
     @JsonProperty("import")
-    public int importt;
-    public int playing;
-    public int bookmark;
+    private int importt;
+    private int playing;
+    private int bookmark;
 }
