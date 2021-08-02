@@ -30,50 +30,26 @@ public class HttpsRequestBuilder {
 
     public String getResponse() {
         try {
-            if (this.httpsRequestType == HttpsRequestType.GET)
-                return getGetResponse();
-            else
-                return getPostResponse();
+            String urlString = this.url;
+            if (queryParameters != null && !queryParameters.isEmpty())
+                urlString += "?" + getParamsString(queryParameters);
+            URL url = new URL(urlString);
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            connection.setRequestProperty("Authorization", "Bearer " + lichessClient.getToken());
+            connection.setDoOutput(true);
+            connection.setRequestMethod(this.httpsRequestType.getRequestType());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
+            StringWriter out = new StringWriter(connection.getContentLength() > 0 ? connection.getContentLength() : 2048);
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+            }
+            manageResponseCode(connection);
+            return out.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    private String getPostResponse() throws IOException {
-        URL url = new URL(this.url);
-        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-        connection.setRequestProperty("Authorization", "Bearer " + lichessClient.getToken());
-        connection.setDoOutput(true);
-        connection.setRequestMethod(this.httpsRequestType.getRequestType());
-        manageResponseCode(connection);
-        if (this.queryParameters != null) {
-            OutputStream os = connection.getOutputStream();
-            for (String key : queryParameters.keySet())
-                os.write(((key) + ":" + queryParameters.get(key) + "\n").getBytes());
-            os.flush();
-        }
-        StringWriter out = new StringWriter(connection.getContentLength() > 0 ? connection.getContentLength() : 2048);
-        return out.toString();
-    }
-
-    private String getGetResponse() throws IOException {
-        String urlString = this.url;
-        if (queryParameters != null && !queryParameters.isEmpty())
-            urlString += "?" + getParamsString(queryParameters);
-        URL url = new URL(urlString);
-        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-        connection.setRequestProperty("Authorization", "Bearer " + lichessClient.getToken());
-        connection.setDoOutput(true);
-        connection.setRequestMethod(this.httpsRequestType.getRequestType());
-        manageResponseCode(connection);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String line = null;
-        StringWriter out = new StringWriter(connection.getContentLength() > 0 ? connection.getContentLength() : 2048);
-        while ((line = reader.readLine()) != null) {
-            out.append(line);
-        }
-        return out.toString();
     }
 
     private void manageResponseCode(HttpsURLConnection httpsURLConnection) {

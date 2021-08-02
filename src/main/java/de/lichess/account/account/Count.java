@@ -1,6 +1,6 @@
 package de.lichess.account.account;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
@@ -16,7 +16,7 @@ public class Count {
     public int rated;
     public int lossH;
     public int drawH;
-    @SerializedName("import")
+    @JsonProperty("import")
     public int importt;
     public int playing;
     public int bookmark;
