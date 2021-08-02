@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class PlayTime {
 
-    private int total;
     private int tv;
+    private int total;
 }

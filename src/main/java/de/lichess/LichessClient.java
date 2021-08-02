@@ -3,6 +3,7 @@ package de.lichess;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.lichess.account.AccountManager;
+import de.lichess.users.UsersManager;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public class LichessClient {
     private final TypeReference<HashMap<String, String>> typeReference;
 
     private AccountManager accountManager;
+    private UsersManager usersManager;
 
     public LichessClient(String token) {
         this.token = token;
@@ -26,5 +28,7 @@ public class LichessClient {
 
     private void createManagers() {
         this.accountManager = new AccountManager(this);
+        this.usersManager = new UsersManager(this);
     }
+
 }

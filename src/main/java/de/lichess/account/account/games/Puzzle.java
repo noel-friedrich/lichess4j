@@ -5,9 +5,10 @@ import lombok.Getter;
 @Getter
 public class Puzzle {
 
-    private int games;
-    private int rating;
     private int rd;
     private int prog;
+    private int games;
+    private int rating;
+
     private boolean prov;
 }
