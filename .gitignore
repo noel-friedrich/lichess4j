@@ -1,2 +1,3 @@
 /.idea/
-lichess4j.iml
+/src/test/
+/lichess4j.iml
