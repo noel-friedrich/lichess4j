@@ -33,7 +33,7 @@ String email = accountManager.getEmail();
 
 **Maven**
 ```xml
-dependency>
+<dependency>
   <groupId>de.klschlitzohr</groupId>
   <artifactId>lichess4j</artifactId>
   <version>1.0-SNAPSHOT</version>
